@@ -148,12 +148,14 @@ class Test1 {
                 }
                 
                 //A3 additional coverage tests
-                 @Test
+                
+                @Test
                 void testEquals_DifferentUpperBound() {
                     Range range1 = new Range(2, 6);
                     Range range2 = new Range(2, 7);
                     assertFalse(range1.equals(range2), "Ranges with different upper bounds should not be equal");
                 }
+                
                 @Test
                 void testEquals_DifferentLowerBound() {
                     Range range1 = new Range(2, 6);
@@ -187,5 +189,16 @@ class Test1 {
                 void testToString_MixedBounds() {
                     Range range = new Range(-2, 2);
                     assertEquals("Range[-2.0,2.0]", range.toString(), "toString should return 'Range[-2.0,2.0]'");
+                }
+                
+                // Test case for Range constructor
+                @Test
+                public void testInvalidRangeLowerGreaterThanUpper() {
+                    try {
+                        new Range(5.0, 1.0);
+                        fail("Expected IllegalArgumentException was not thrown");
+                    } catch (IllegalArgumentException e) {
+                        assertTrue(e.getMessage().contains("Range(double, double): require lower ("));
+                    }
                 }
 }
