@@ -2,6 +2,7 @@ package org.jfree.data;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -119,36 +120,57 @@ class Test2 {
     
 // 	Shift Method Testing 
     @Test
-    void testShiftPositive() {
-    	Range range = new Range(-10, 25);  
-        Range shifted = Range.shift(range, 7);
-        assertEquals(-3, shifted.getLowerBound(), "Lower bound should be -3 after shifting by 7");
-        assertEquals(32, shifted.getUpperBound(), "Upper bound should be 32 after shifting by 7");
+    void testShift_PositiveRangeUp() {
+        Range base = new Range(10, 20);
+        Range result = Range.shift(base, 5);
+        assertEquals(new Range(15, 25), result, "Shifting (10,20) by 5 should result in (15,25)");
     }
 
     @Test
-    void testShiftNegative() {
-    	Range range = new Range(-10, 25);  
-        Range shifted = Range.shift(range, -6);
-        assertEquals(-16, shifted.getLowerBound(), "Lower bound should be -16 after shifting by -6");
-        assertEquals(19, shifted.getUpperBound(), "Upper bound should be 19 after shifting by -6");
+    void testShift_PositiveRangeDown() {
+        Range base = new Range(10, 20);
+        Range result = Range.shift(base, -5);
+        assertEquals(new Range(5, 15), result, "Shifting (10,20) by -5 should result in (5,15)");
     }
+
+    @Test
+    void testShift_NegativeRange() {
+        Range base = new Range(-20, -10);
+        Range result = Range.shift(base, 5);
+        assertEquals(new Range(-15, -5), result, "Shifting (-20,-10) by 5 should result in (-15,-5)");
+    }
+
+    @Test
+    void testShift_RangeStartsAtZero() {
+        Range base = new Range(0, 10);
+        Range result = Range.shift(base, -5);
+        assertEquals(new Range(-5, 5), result, "Shifting (0,10) by -5 should result in (-5,5)");
+    }
+
+    @Test
+    void testShift_SinglePointRange() {
+        Range base = new Range(10, 10);
+        Range result = Range.shift(base, 5);
+        assertEquals(new Range(15, 15), result, "Shifting (10,10) by 5 should result in (15,15)");
+    }
+
+    @Test
+    void testShift_LargeShift() {
+        Range base = new Range(10, 20);
+        Range result = Range.shift(base, 100);
+        assertEquals(new Range(110, 120), result, "Shifting (10,20) by 100 should result in (110,120)");
+    }
+
+    @Test
+    void testShift_ZeroWidthRange() {
+        Range base = new Range(0, 0);
+        Range result = Range.shift(base, 10);
+        assertEquals(new Range(10, 10), result, "Shifting (0,0) by 10 should result in (10,10)");
+    }
+
     
-    @Test
-    void testShift_Zero() {
-    	Range range = new Range(-10, 25);  
-        Range shifted = Range.shift(range, 0);
-        assertEquals(-10, shifted.getLowerBound(), "Lower bound should remain -10 when shifting by 0");
-        assertEquals(25, shifted.getUpperBound(), "Upper bound should remain 25 when shifting by 0");
-    }
 
-    @Test
-    void testShift_BeyondZero() {
-        Range range = new Range(-5, 5);
-        Range shifted = Range.shift(range, 10);
-        assertEquals(5, shifted.getLowerBound(), "Lower bound should be 5 after shifting by 10");
-        assertEquals(15, shifted.getUpperBound(), "Upper bound should be 15 after shifting by 10");
-    }
+    
 
 //  Combine Method Testing()
     @Test

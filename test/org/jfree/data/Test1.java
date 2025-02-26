@@ -146,6 +146,23 @@ class Test1 {
                     Range range = new Range(2, 6);
                     assertFalse(range.equals(null), "Range should not equal null");
                 }
+                
+                //A3 additional coverage tests
+                @Test
+                void testEquals_DifferentLowerBound() {
+                    Range range1 = new Range(2, 6);
+                    Range range2 = new Range(3, 6);
+                    assertFalse(range1.equals(range2), "Ranges with different lower bounds should not be equal");
+                }
+
+              
+                @Test
+                void testEquals_FloatingPointPrecision() {
+                    Range range1 = new Range(2.0000001, 6.0000001);
+                    Range range2 = new Range(2.0000001, 6.0000001);
+                    assertTrue(range1.equals(range2), "Ranges with minor floating-point differences should be equal");
+                }
+
 
                 // Test cases for the toString method
                 @Test

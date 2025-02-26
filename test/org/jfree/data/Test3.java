@@ -146,5 +146,18 @@ class Test3 {
     void testExpandToInclude_NullRange() {
         assertEquals(new Range(5,5), Range.expandToInclude(null, 5), "The expanding null range with 5 should create (5,5)");
     }
+    
+    /*
+    @Test
+    void testConstructorRange_ValidRange() {
+        Range range = new Range(1.0, 5.0);
+        assertEquals(1.0, range.getLowerBound(), 0.0001);
+        assertEquals(5.0, range.getUpperBound(), 0.0001);
+    }
+    */
+    
+    
+    
+    
 	
 }
