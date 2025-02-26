@@ -109,9 +109,9 @@ class Test1 {
 
                 @Test
                 void testShift_NullBase() {
-                    assertThrows(InvalidParameterException.class, () -> {
+                    assertThrows(NullPointerException.class, () -> {
                         Range.shift(null, 2.0, true);
-                    }, "Null base should throw InvalidParameterException");
+                    }, "Null base should throw NullPointerException");
                 }
 
                 // Test cases for the equals method
