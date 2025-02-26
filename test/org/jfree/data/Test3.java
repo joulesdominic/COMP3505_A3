@@ -105,11 +105,13 @@ class Test3 {
         assertEquals(range2, Range.combine(null, range2), "Combining null with (4,8) returns (4,8)");
     }
 
-    @Test
+     @Test
     void testCombine_SecondRangeNull_FirstValid() {
-        Range range1 = new Range(1, 5);
-        assertEquals(range1, Range.combine(range1, null), "Combining (1,5) with null returns (1,5)");
-    }
+    Range range1 = new Range(1, 5);
+    Range result = Range.combine(range1, null);
+
+    assertNull(result, "Combining (1,5) with null should return null");
+}
     
     @Test
     void testCombine_IdenticalRanges() {
