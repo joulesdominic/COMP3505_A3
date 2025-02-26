@@ -18,5 +18,5 @@ jobs:
         curl https://repo1.maven.org/maven2/org/jfree/jcommon/1.0.17/jcommon-1.0.17.jar -o lib/jcommon-1.0.17.jar
         curl https://repo1.maven.org/maven2/javax/servlet/javax.servlet-api/3.0.1/javax.servlet-api-3.0.1.jar -o lib/javax.servlet-api-3.0.1.jar
         javac -d bin/ src/org/jfree/data/Range.java 
-        javac -d bin -cp bin:lib/junit-platform-console-standalone-1.11.4.jar test/*
+        javac -d bin -cp bin:lib/junit-platform-console-standalone-1.11.4.jar test/org/jfree/data/*
         java -jar lib/junit-platform-console-standalone-1.11.4.jar -class-path bin --scan-class-path 
