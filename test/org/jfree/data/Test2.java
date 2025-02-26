@@ -107,6 +107,13 @@ class Test2 {
     }
     
     @Test
+    void testIntersectsLowerRange_PosNums() {
+    	Range range = new Range(2, 5); 
+        assertTrue(range.intersects(1, 3), "Range (1,3) should intersect with (2,5)");
+    }
+
+    
+    @Test
     void testIntersectsNoOverlapOverRange() {
     	Range range = new Range(-10, 25);  
         assertFalse(range.intersects(30, 40), "Range (-10,25) should not intersect with (30,40)");
