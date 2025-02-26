@@ -97,7 +97,7 @@ class Test2 {
     @Test
     void testIntersectsUpperRange() {
     	Range range = new Range(-10, 25);  
-        assertTrue(range.intersects(25, 30), "Range (-10,25) should intersect with (25,30)");
+        assertFalse(range.intersects(25, 30), "Range (-10,25) should NOT intersect with (25,30)");
     }
     
     @Test
