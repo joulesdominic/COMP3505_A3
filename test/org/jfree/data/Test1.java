@@ -148,6 +148,12 @@ class Test1 {
                 }
                 
                 //A3 additional coverage tests
+                 @Test
+                void testEquals_DifferentUpperBound() {
+                    Range range1 = new Range(2, 6);
+                    Range range2 = new Range(2, 7);
+                    assertFalse(range1.equals(range2), "Ranges with different upper bounds should not be equal");
+                }
                 @Test
                 void testEquals_DifferentLowerBound() {
                     Range range1 = new Range(2, 6);
