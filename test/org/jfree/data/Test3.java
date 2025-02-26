@@ -1,5 +1,7 @@
 package org.jfree.data;
 
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.junit.jupiter.api.AfterAll;
@@ -104,7 +106,14 @@ class Test3 {
         Range range2 = new Range(4, 8);
         assertEquals(range2, Range.combine(null, range2), "Combining null with (4,8) returns (4,8)");
     }
-
+    
+    /*
+    @Test
+    void testCombine_SecondRangeNull_FirstValid() {
+        Range range1 = new Range(1, 5);
+        assertEquals(range1, Range.combine(range1, null), "Combining (1,5) with null returns (1,5)");
+    }
+    */
     @Test
     void testCombine_SecondRangeNull_FirstValid() {
         Range range1 = new Range(1, 5); // A valid range
@@ -114,6 +123,8 @@ class Test3 {
         assertEquals("Lower bound should match range1", 1, result.getLowerBound(), 0.1d);
         assertEquals("Upper bound should match range1", 5, result.getUpperBound(), 0.1d);
     }
+
+    
     
     @Test
     void testCombine_IdenticalRanges() {
@@ -150,8 +161,5 @@ class Test3 {
     void testExpandToInclude_NullRange() {
         assertEquals(new Range(5,5), Range.expandToInclude(null, 5), "The expanding null range with 5 should create (5,5)");
     }
-    
-
-    
 	
 }
