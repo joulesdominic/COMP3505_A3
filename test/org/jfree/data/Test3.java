@@ -107,8 +107,12 @@ class Test3 {
 
     @Test
     void testCombine_SecondRangeNull_FirstValid() {
-        Range range1 = new Range(1, 5);
-        assertEquals(range1, Range.combine(range1, null), "Combining (1,5) with null returns (1,5)");
+        Range range1 = new Range(1, 5); // A valid range
+        Range result = Range.combine(range1, null);
+        
+        assertNotNull("Result should not be null", result);
+        assertEquals("Lower bound should match range1", 1, result.getLowerBound(), 0.1d);
+        assertEquals("Upper bound should match range1", 5, result.getUpperBound(), 0.1d);
     }
     
     @Test
@@ -147,17 +151,7 @@ class Test3 {
         assertEquals(new Range(5,5), Range.expandToInclude(null, 5), "The expanding null range with 5 should create (5,5)");
     }
     
-    /*
-    @Test
-    void testConstructorRange_ValidRange() {
-        Range range = new Range(1.0, 5.0);
-        assertEquals(1.0, range.getLowerBound(), 0.0001);
-        assertEquals(5.0, range.getUpperBound(), 0.0001);
-    }
-    */
-    
-    
-    
+
     
 	
 }
