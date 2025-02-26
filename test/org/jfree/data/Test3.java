@@ -116,14 +116,13 @@ class Test3 {
     */
     @Test
     void testCombine_SecondRangeNull_FirstValid() {
-        Range range1 = new Range(1, 5); // A valid range
-        Range result = Range.combine(range1, null);
-        
-        assertNotNull("Result should not be null", result);
-        assertEquals("Lower bound should match range1", 1, result.getLowerBound(), 0.1d);
-        assertEquals("Upper bound should match range1", 5, result.getUpperBound(), 0.1d);
-    }
-
+    Range range1 = new Range(1.0, 5.0); // A valid range
+    Range result = Range.combine(range1, null);
+    
+    assertNotNull("Result should not be null", result);
+    assertEquals("Lower bound should match range1", 1.0, result.getLowerBound(), 0.0001);
+    assertEquals("Upper bound should match range1", 5.0, result.getUpperBound(), 0.0001);
+}
     
     
     @Test
